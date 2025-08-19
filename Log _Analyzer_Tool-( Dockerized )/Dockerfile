@@ -23,10 +23,10 @@ WORKDIR /app
 COPY log_analyzer.sh /app/log_analyzer.sh
 
 
-# We will copy cronjob file
+# We will copy cronjob file with name of log-analyzer-cron at below location, 'cronjob' is renamed as log-analyzer-cron.
 COPY cronjob /etc/cron.d/log-analyzer-cron
 
-# We have to set permissions for script and cronjob
+# We have to set permissions for script and cronjob file that we have just copied aobe.
 RUN chmod +x /app/log_analyzer.sh && \
     chmod 0644 /etc/cron.d/log-analyzer-cron && \
     crontab /etc/cron.d/log-analyzer-cron
