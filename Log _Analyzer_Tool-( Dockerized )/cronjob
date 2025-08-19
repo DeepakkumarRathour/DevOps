@@ -1,0 +1,2 @@
+
+*/30 * * * * /app/log_analyzer.sh >> /var/log/log_analyzer_report.log 2>&1
