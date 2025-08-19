@@ -23,12 +23,15 @@ WORKDIR /app
 COPY log_analyzer.sh /app/log_analyzer.sh
 
 
-# Now Make script executable by giving permission
+# We will copy cronjob file
+COPY cronjob /etc/cron.d/log-analyzer-cron
 
-RUN chmod +x /app/log_analyzer.sh
+# We have to set permissions for script and cronjob
+RUN chmod +x /app/log_analyzer.sh && \
+    chmod 0644 /etc/cron.d/log-analyzer-cron && \
+    crontab /etc/cron.d/log-analyzer-cron
+
+# Now Run cron in foreground (so container keeps running)
+CMD ["cron", "-f"]
 
 
-
-# Now we will run the analyzer by default using below command
-
-CMD ["/app/log_analyzer.sh"]
