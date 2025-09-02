@@ -4,7 +4,7 @@
 
 FROM ubuntu:20.04
 
-# Now we are Installing some dependencies (mail, cron, etc.)
+#  Now we are Installing some dependencies (mail, cron, etc.)
 
 RUN apt-get update && \
     apt-get install -y mailutils cron grep awk sed && \
